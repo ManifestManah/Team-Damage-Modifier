@@ -35,6 +35,8 @@ public void OnPluginStart()
 	int TeamDamageModifier = GetConVarInt(Cvar_TeamDamageModifier);
 	if(TeamDamageModifier == 1)
 	{
+		EnableFriendlyFire();
+
 		for (int client = 1; client <= MaxClients; client++)
 		{
 			if(IsValidClient(client))
@@ -42,6 +44,23 @@ public void OnPluginStart()
 				SDKHook(client, SDKHook_OnTakeDamage, Event_OnDamageTaken);
 			}
 		}
+	}
+}
+
+
+public void OnMapStart()
+{
+	EnableFriendlyFire();
+}
+
+
+public void EnableFriendlyFire()
+{
+	ConVar FriendlyFire = FindConVar("mp_friendlyfire");
+
+	if(FriendlyFire != null)
+	{
+		FriendlyFire.SetInt(1);
 	}
 }
 
