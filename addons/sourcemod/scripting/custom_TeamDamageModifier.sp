@@ -36,7 +36,7 @@ public void OnPluginStart()
 	if(TeamDamageModifier == 1)
 	{
 		EnableFriendlyFire();
-
+		
 		for (int client = 1; client <= MaxClients; client++)
 		{
 			if(IsValidClient(client))
@@ -45,12 +45,6 @@ public void OnPluginStart()
 			}
 		}
 	}
-}
-
-
-public void OnMapStart()
-{
-	EnableFriendlyFire();
 }
 
 
@@ -79,6 +73,8 @@ public void TeamDamageModifierChanged(ConVar convar, char[] oldValue, char[] new
 	}
 	else
 	{
+		EnableFriendlyFire();
+
 		for (int client = 1; client <= MaxClients; client++)
 		{
 			if(IsValidClient(client))
